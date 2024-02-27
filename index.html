@@ -12,6 +12,14 @@
   <button onclick="fetchTodos()">Fetch Todos</button>
   <button onclick="logTodos()">Log Todos</button>
   <button onclick="populateTodos()">Populate Todos</button>
+
+  <input id="userIdInput" type="number" min="1" max="10">
+  <button onclick="filterTodos()">Filter User Todos</button>
+  <!-- <div id="completeButtonContainer"></div> -->
+
+  <button onclick="showComplete()">Show Complete</button>
+  <button onclick="showIncomplete()">Show Incomplete</button>
+
   <ol id="todo-list">
   <!-- LIs will go here -->
   </ol>

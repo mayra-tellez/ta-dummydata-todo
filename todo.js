@@ -25,9 +25,9 @@ const logTodos = () => {
   console.log(arrayOfTodos)
 }
 
+const orderedList = document.getElementById("todo-list")
+
 const populateTodos = () => {
-  
-  const list = document.getElementById("todo-list")
 
   for (let i = 0; i < arrayOfTodos.length; i++) {
     
@@ -36,20 +36,78 @@ const populateTodos = () => {
     let liText = document.createTextNode(todoTitle)
 
     listItem.appendChild(liText)
-    list.appendChild(listItem)
+    orderedList.appendChild(listItem)
   }
 }
 
-// After you've been able to access and console the properties on any object in the array your next step is to insert that data into an li element and insert the li into the ol.
 
-// Start with getting just the first item and its title property.
+// Add a button that when clicked will:
+// and populate it with only todos with the userID that matches the number inputted.
+// then stores the currently filtered todos in a variable so that ...
 
-// Then capture the ol item into a variable (getElementById)
-// createElement to make a new LI
-// createTextNode inside the li using the title property.
-// Now append the text to the new element
-// Then append the element to the ol element.
-// Put all of that inside your populateTodos function.
-// git status, add, commit, push
+// You can create two more buttons that when clicked:
 
-// Now that you have one element created and showing up on the screen, put the same code inside a for loop and iterate over the length of the array. But now just change out [0] for [i]! (Refer back to your for loop lesson if needed)
+// removes those todos from the view
+// and shows only todos that are either:
+// completed
+// not completed
+
+const filterTodos = () => {
+  orderedList.innerHTML = ""
+
+  let userInput = document.getElementById("userIdInput").value
+  
+  const filteredList = arrayOfTodos.filter((todo) => {
+    return todo.userId == userInput
+  })
+  console.log("filtered list:", filteredList)
+
+  arrayOfTodos = filteredList
+  populateTodos()
+
+  // let completeButton = document.createElement("button")
+  // const container = document.getElementById("completeButtonContainer") 
+  // completeButton.innerText = "Show Complete"
+  // container.appendChild(completeButton)
+  // completeButton.addEventListener("click", showComplete())
+}
+
+const showComplete = () => {
+  orderedList.innerHTML = ""
+
+  const completeList = arrayOfTodos.filter((todo) => {
+    return todo.completed === true
+  })
+
+  console.log(completeList)
+
+  for (let i = 0; i < completeList.length; i++) {
+    
+    let todoTitle = completeList[i].title
+    let listItem = document.createElement("li")
+    let liText = document.createTextNode(todoTitle)
+
+    listItem.appendChild(liText)
+    orderedList.appendChild(listItem)
+  }
+}
+
+const showIncomplete = () => {
+  orderedList.innerHTML = ""
+
+  const incompleteList = arrayOfTodos.filter((todo) => {
+    return todo.completed === false
+  })
+
+  console.log(incompleteList)
+
+  for (let i = 0; i < incompleteList.length; i++) {
+    
+    let todoTitle = incompleteList[i].title
+    let listItem = document.createElement("li")
+    let liText = document.createTextNode(todoTitle)
+
+    listItem.appendChild(liText)
+    orderedList.appendChild(listItem)
+  }
+}
